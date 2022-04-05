@@ -28,28 +28,42 @@ class LinkedList(MyList):
         return self.length
 
     def getitem(self, j):
-        current = self.head
-        for index in range(j+1):
-            current = current.next
-        return current
+        if(self.length > j):
+            current = self.head
+            for i in range(j):
+                current = current.next
+            return current
+        raise ValueError('value not in list')
 
     def setitem(self, val, j):
-        molayo = 1
+        if (self.length > j):
+            current = self.head
+            for i in range(j):
+                current = current.next
+            current.data = val
+            return
+        raise ValueError('index is out of bound')
 
     def insertItem(self, item, j=0):
         new_node = Node(item)
         if j == 0:
-            new_node.next = self.head
-            self.head = new_node
-            self.length += 1
+            if self.head == None:
+                new_node = self.head
+                self.head = new_node
+                self.length += 1
+            elif self.head != None:
+                new_node.next = self.head
+                self.head = new_node
+                self.length += 1
         elif j != 0 or j != self.length:
-            new_node.next = self.
-            self. = new_node
+            self.getitem(j-1)
+            self.getitem(j-1).next = new_node
+            new_node.next = self.getitem(j-1)
             self.length += 1
-        else:
+        elif j == self.length:
             new_node.next = None
-            self.tail.next = new_node
-            self.tail = new_node
+            self.length.next = new_node
+            self.length.data = new_node
             self.length += 1
 
     def removeItem(self, j=0):
@@ -64,6 +78,4 @@ class LinkedList(MyList):
         while current is not None:
             print(current.data)
             current = current.next
-
-
 

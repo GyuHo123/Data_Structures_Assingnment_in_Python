@@ -31,16 +31,22 @@ class ArrayBasedList(MyList):
             self.length += 1
         except IndexError:
             self.item = self.item + [None] * self.length
+            self.insertItem(item, j)
 
     def removeItem(self, j=0):
-        for i in range(self.length, j, -1):
-            self.item[i] = self.item[i+1]
+        for i in range(j, self.length-1):
+            self.setitem(self.item[i+1], i)
+        self.setitem(None, self.length-1)
         self.length -= 1
         return
 
     def printMyList(self):
-            print(self.item)
-            print(" ")
+        for i in range(0, self.length):
+            if(i < self.length):
+                print(self.item[i], end = ' ')
+            else:
+                break
+        print(" ")
 
 
 
