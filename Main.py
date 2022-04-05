@@ -3,7 +3,6 @@ from HW1_2 import LinkedList
 if __name__ == '__main__':
 
     korea = LinkedList()
-
     korea.insertItem(4, 0)
     korea.insertItem(3, 0)
     korea.insertItem(1, 0)
@@ -16,3 +15,5 @@ if __name__ == '__main__':
     korea.removeItem(0)
 
     korea.printMyList()
+
+
