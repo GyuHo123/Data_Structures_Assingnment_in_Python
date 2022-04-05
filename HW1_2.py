@@ -31,15 +31,15 @@ class LinkedList(MyList):
         if(self.length > j):
             current = self.head
             for i in range(j):
-                current = current.next
-            return current
+                current = current.next_node
+            return current.data
         raise ValueError('value not in list')
 
     def setitem(self, val, j):
         if (self.length > j):
             current = self.head
             for i in range(j):
-                current = current.next
+                current = current.next_node
             current.data = val
             return
         raise ValueError('index is out of bound')
@@ -47,35 +47,42 @@ class LinkedList(MyList):
     def insertItem(self, item, j=0):
         new_node = Node(item)
         if j == 0:
-            if self.head == None:
-                new_node = self.head
-                self.head = new_node
-                self.length += 1
-            elif self.head != None:
-                new_node.next = self.head
-                self.head = new_node
-                self.length += 1
-        elif j != 0 or j != self.length:
-            self.getitem(j-1)
-            self.getitem(j-1).next = new_node
-            new_node.next = self.getitem(j-1)
+            new_node.set_next(self.head)
+            self.head = new_node
             self.length += 1
-        elif j == self.length:
-            new_node.next = None
-            self.length.next = new_node
-            self.length.data = new_node
+            return
+
+        elif j > 0 and j < self.length:
+            current = self.head
+            for i in range(j-1):
+                current = current.next_node
+            temp = current.next_node
+            current.set_next(new_node)
+            new_node.set_next(temp)
             self.length += 1
+
 
     def removeItem(self, j=0):
         if j == 0:
-            self.head = self.head.next
-            return
-        data = self.getitem(j-1)
-        data.next_node = data.next_node.next_node
+            self.head = self.head.next_node
+
+        elif j <= self.length:
+            current = self.head
+            for i in range(j-1):
+                current = current.next_node
+            current.next_node = current.next_node.next_node
+
+        elif j > self.length:
+            raise ValueError('index out of bound')
+
+        self.length -= 1
+
+
 
     def printMyList(self):
-        current = self.head
-        while current is not None:
-            print(current.data)
-            current = current.next
+        curr = self.head
+        while curr != None:
+            print(curr.data, end = ' ')
+            curr = curr.next_node
+        print()
 
