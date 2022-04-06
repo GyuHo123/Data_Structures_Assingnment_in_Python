@@ -52,7 +52,7 @@ class LinkedList(MyList):
             self.length += 1
             return
 
-        elif j > 0 and j < self.length:
+        elif j > 0 and j < self.length-1:
             current = self.head
             for i in range(j-1):
                 current = current.next_node
@@ -66,11 +66,18 @@ class LinkedList(MyList):
         if j == 0:
             self.head = self.head.next_node
 
-        elif j <= self.length:
+        elif j < self.length-1:
             current = self.head
             for i in range(j-1):
                 current = current.next_node
             current.next_node = current.next_node.next_node
+
+        elif j == self.length-1:
+            current = self.head
+            for i in range(j-1):
+                current = current.next_node
+            current.next_node = None
+
 
         elif j > self.length:
             raise ValueError('index out of bound')
