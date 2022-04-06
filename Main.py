@@ -1,8 +1,8 @@
-from HW1_2 import LinkedList
+from HW1_3 import DoublyLinkedList
 
 if __name__ == '__main__':
 
-    korea = LinkedList()
+    korea = DoublyLinkedList()
     korea.insertItem(4, 0)
     korea.insertItem(3, 0)
     korea.insertItem(1, 0)
