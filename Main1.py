@@ -1,8 +1,8 @@
-from HW1_3 import DoublyLinkedList
+from HW1_1 import ArrayBasedList
 
 if __name__ == '__main__':
 
-    korea = DoublyLinkedList()
+    korea = ArrayBasedList(10)
     korea.insertItem(4, 0)
     korea.insertItem(3, 0)
     korea.insertItem(1, 0)
@@ -15,5 +15,3 @@ if __name__ == '__main__':
     korea.removeItem(0)
 
     korea.printMyList()
-
-
